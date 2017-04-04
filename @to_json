@@ -1,0 +1,12 @@
+import json
+
+
+def to_json(func):
+    def wrapper(*args, **kwargs):
+        f = func(*args, **kwargs)
+        if isinstance(f, dict):
+            f = json.dump(f, indent=None, sort_keys=True)
+        return f
+    return wrapper
+
+
