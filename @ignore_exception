@@ -1,0 +1,18 @@
+"""
+Написать декоратор @ignore_exceptions. Декоратору передается класс исключения.
+Если во время вызова функции, к которой он применяется, произошло исключение
+соответствующего типа,  то мы продолжаем работу, возвращаем None.
+"""
+
+def ignore_exception(exception):
+    def wrapper(func):
+        def f(*args, **kwargs):
+            try:
+                s = func(*args, **kwargs)
+            except exception:
+                s = None
+            return s
+        return wrapper
+
+@ignore_exception
+...
