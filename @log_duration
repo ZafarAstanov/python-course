@@ -1,0 +1,19 @@
+import time
+
+
+def timer(f):
+    def wrapper(*args, **kwargs):
+        tm = time.time()
+        res = f(*args, **kwargs)
+        print("Время выполнения команды: %f" % (time.time()-tm))
+        print(res)
+        return res
+    return wrapper
+
+
+@timer
+def insert_values(x, y):
+    print(x + y)
+
+
+insert_values(2, 4)
