@@ -1,12 +1,30 @@
 import json
 
+"""
+Написать декоратор @to_json. Если функция, к которой он применяется,
+возвращает словарь, то этот словарь должен быть преобразован в JSON.
+В других случаях возвращать результат без преобразований.
+"""
 
-def to_json(func):
+def to_json(function):
     def wrapper(*args, **kwargs):
-        f = func(*args, **kwargs)
-        if isinstance(f, dict):
-            f = json.dump(f, indent=None, sort_keys=True)
-        return f
+        w = function(*args, **kwargs)
+        if isinstance(w, dict):
+            w = json.dump(w, sort_keys=True)
+        return w
     return wrapper
+
+@to_json
+def ex():
+    return {
+        "BMSTU": "Moscow",
+        "TATU": "Tashkent",
+        "Harvard": "Massachusetts"
+    }
+
+
+print(ex)
+
+
 
 
