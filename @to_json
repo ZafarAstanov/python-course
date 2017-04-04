@@ -9,7 +9,7 @@ import json
 def to_json(function):
     def wrapper(*args, **kwargs):
         w = function(*args, **kwargs)
-        if isinstance(w, dict):
+        if type(w) == dict:
             w = json.dump(w, sort_keys=True)
         return w
     return wrapper
